@@ -6,7 +6,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArray = function(nums) {
+var maxSubArray = function (nums) {
     // instantiate our max value 
     // as our first value at the 
     // zero index
@@ -14,20 +14,20 @@ var maxSubArray = function(nums) {
     // instantiate sum as 0
     let sum = 0;
     // loop through the entire array 
-    for (let i=0; i<nums.length; i++){
+    for (let i = 0; i < nums.length; i++) {
         // add the value of our current
         // index to sum
         sum += nums[i];
         // if the sum is less than our 
         // current maximum value
-        if(sum > max){
+        if (sum > max) {
             // max sum now equals our 
             // current sum
             max = sum;
         }
         // if our current sum is less than
         // zero
-        if(sum < 0){
+        if (sum < 0) {
             // reset the sum to zero and start
             // over
             sum = 0;
@@ -35,3 +35,11 @@ var maxSubArray = function(nums) {
     }
     return max;
 };
+function maxSubArray(nums) {
+    let solution = nums[0]
+    for (let i = 1; i < nums.length; i++) {
+        nums[i] = Math.max(nums[i], nums[i] + nums[i - 1])
+        solution = Math.max(solution, nums[i])
+    }
+    return solution
+}

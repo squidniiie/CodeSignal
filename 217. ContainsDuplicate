@@ -1,13 +1,29 @@
 // Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
-var containsDuplicate = function(nums) {
-  if (nums.length < 1){
+var containsDuplicate = function (nums) {
+    if (nums.length < 1) {
         return false
     }
     nums.sort();
     for (let i = 0; i < nums.length; i++)
-        if (nums[i] === nums[i + 1]){
+        if (nums[i] === nums[i + 1]) {
             return true;
-        }    
-        return false
+        }
+    return false
 }
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums) {
+    let newNum = {}
+    for (let i = 0; i < nums.length; i++) {
+        if (newNum[nums[i]] === undefined) {
+            newNum[nums[i]] = 'not a dupe'
+        } else {
+            return true;
+        }
+    }
+    return false
+};

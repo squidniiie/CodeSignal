@@ -1,0 +1,32 @@
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function (intervals) {
+    if (intervals.length === 0) return intervals;
+    intervals.sort(([st1], [st2]) => {
+        //switch
+        console.log(st1, st2)
+        return st1 - st2;
+
+    });
+
+    let out = [];
+
+    let [i, j] = intervals[0];
+
+    for (let k = 1; k < intervals.length; k++) {
+        const [a, b] = intervals[k];
+        console.log(a, b)
+        if (j < a) {
+            out.push([i, j]);
+
+            [i, j] = [a, b]
+        } else {
+            j = j > b ? j : b;
+        }
+    }
+
+    out.push([i, j]);
+    return out;
+}

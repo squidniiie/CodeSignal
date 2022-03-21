@@ -1,0 +1,44 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+// use two pointers to see if they are the same then move in right and left
+// var isPalindrome = function(s) {
+//     let one = 0
+//     let two = s.length -1;
+
+//     while(one < two){
+//     while(!isValid(s.charAt(one))){
+//         one++;
+//         }
+//         while(!isValid(s.charAt(two))) {
+//         two--;
+//         }
+//         if(s.charAt(one).toLowerCase() !== s.charAt(two).toLowerCase()) {
+//             return false
+//         }
+//         one++
+//         two--
+//     }
+//     return true;
+// };
+// let isValid = function(char) {
+//     let valid = 'abcdefghijklmnopqrstuvwxyz'
+//     return valid.indexOf(char.toLowerCase())>-1;
+// }
+
+var isPalindrome = function (s) {
+    s = s.replace(/[^A-Za-z0-9]/g, '').toLowerCase()
+
+    let left = 0, right = s.length - 1
+
+
+    while (left < right) {
+        if (s[left] !== s[right]) {
+            return false
+        }
+        left++
+        right--
+    }
+    return true
+}

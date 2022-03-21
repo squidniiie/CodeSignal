@@ -1,16 +1,26 @@
-var missingNumber = function(nums) {
+var missingNumber = function (nums) {
     let length = (nums.length + 1);
     sumTotal = 0;
     missing = 0;
     //nums.sort()
-    for( let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
         //console.log(i)
         sumTotal += i
-        if(nums[i]) {
+        if (nums[i]) {
             //console.log(nums[i])
             missing += nums[i]
         }
     }
     return sumTotal - missing
-    
+
 };
+// sort method
+// hasmap - linear time - O(n) for time and space
+// gSum = n*(n+1)/2 = 6 - constant time 0(1)
+
+
+// var missingNumber = function(nums) {
+//     const gSum = (nums.length * (nums.length +1))/2;
+//     const nSum = nums.reduce((acc,el)=> acc + el, 0)
+//     return gSum - nSum
+// };

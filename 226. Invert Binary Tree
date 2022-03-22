@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+// return null if root is null
+// create temp var and assign to root.left
+// change root.left to equal root.right
+// change root.left to equal temp
+// invertTree(root.left)
+// invertTree(root.right)
+// time: O(n)
+// space: O(n)
+
+var invertTree = function (root) {
+    if (root === null) {
+        return null;
+    }
+    let temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    invertTree(root.left)
+    invertTree(root.right)
+
+    return root
+};

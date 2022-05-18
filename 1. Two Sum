@@ -13,12 +13,13 @@
 //     }
 // };
 var twoSum = function (nums, target) {
-    let hashmap = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        const pairValue = target - nums[i]
-        if (hashmap.has(pairValue)) {
-            return [i, hashmap.get(pairValue)];
+    let map = new Map()
+    for(let i =0; i < nums.length; i++) {
+        let key = nums[i];
+        if(map.has(key) === false){
+            map.set(target - key, i)
+        }else {
+            return [map.get(key), i]
         }
-        hashmap.set(nums[i], i);
     }
 }

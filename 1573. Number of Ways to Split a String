@@ -1,0 +1,28 @@
+function solution(s) {
+    let one = 0;
+    let list = [];
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === "1") one++, list.push(i);
+    }
+    if (one % 3 !== 0) return 0;
+    if (one === 0) return ((s.length - 1) * (s.length - 2) / 2) % 1000000007;
+    one /= 3;
+    return ((list[one] - list[one - 1]) * (list[2 * one] - list[2 * one - 1])) % 1000000007;
+}
+function solution(s) {
+    const n = s.length;
+    const modulo = 1000000007;
+    const onesCount = s.split('').filter(c => c === '1').length;
+    if (onesCount % 3) return 0;
+    else if (onesCount === 0) return (n - 2) * (n - 1) / 2 % modulo;
+    const onesPortion = onesCount / 3;
+    let firstFactor = 0, secondFactor = 0, currOnes = 0;
+    for (let c of s) {
+        if (c === '1') currOnes++;
+        else {
+            if (currOnes === onesPortion) firstFactor++;
+            if (currOnes === onesPortion * 2) secondFactor++;
+        }
+    }
+    return (firstFactor + 1) * (secondFactor + 1) % modulo;
+}

@@ -3,6 +3,7 @@
  * @param {number} target
  * @return {number}
  */
+ BINARY SEARCH - O(log n)
 var searchInsert = function (nums, target) {
     let start = 0
     let end = nums.length - 1

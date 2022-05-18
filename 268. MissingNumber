@@ -14,6 +14,17 @@ var missingNumber = function (nums) {
     return sumTotal - missing
 
 };
+function solution(A) {
+  const set = new Set(A);
+  let i = 1;
+
+  while (set.has(i)) {
+    i++;
+  }
+
+  return i;
+}
+
 // sort method
 // hasmap - linear time - O(n) for time and space
 // gSum = n*(n+1)/2 = 6 - constant time 0(1)

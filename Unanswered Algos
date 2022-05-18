@@ -1,0 +1,191 @@
+You are given a string s. Your task is to count the number of ways of splitting s into three non-empty parts a, b and c (s = a + b + c) in such a way that a + b, b + c and c + a are all different strings.
+
+NOTE: + refers to string concatenation.
+
+Example
+
+For s = "xzxzx", the output should be solution(s) = 5.
+
+Consider all the ways to split s into three non-empty parts:
+
+If a = "x", b = "z" and c = "xzx", then all a + b = "xz", b + c = "zxzx" and c + a = xzxx are different.
+If a = "x", b = "zx" and c = "zx", then all a + b = "xzx", b + c = "zxzx" and c + a = zxx are different.
+If a = "x", b = "zxz" and c = "x", then all a + b = "xzxz", b + c = "zxzx" and c + a = xx are different.
+If a = "xz", b = "x" and c = "zx", then a + b = b + c = "xzx". Hence, this split is not counted.
+If a = "xz", b = "xz" and c = "x", then all a + b = "xzxz", b + c = "xzx" and c + a = xxz are different.
+If a = "xzx", b = "z" and c = "x", then all a + b = "xzxz", b + c = "zx" and c + a = xxzx are different.
+Since there are five valid ways to split s, the answer is 5.
+
+Input/Output
+
+[execution time limit] 4 seconds (js)
+
+[input] string s
+
+A string to split.
+
+Guaranteed constraints:
+3 ≤ s.length ≤ 100.
+
+[output] integer
+
+The number of ways to split the given string.
+
+[JavaScript] Syntax Tips
+
+// Prints help message to the console
+// Returns a string
+function helloWorld(name) {
+    console.log("This prints to the console when you Run Tests");
+    return "Hello, " + name;
+}
+
+function solution(s) {
+
+}
+______________________________________________________
+Minesweeper is a popular single-player computer game. The goal is to locate mines within a rectangular grid of cells. At the start of the game, all of the cells are concealed. On each turn, the player clicks on a blank cell to reveal its contents, leading to the following result:
+
+If there's a mine on this cell, the player loses and the game is over;
+Otherwise, a number appears on the cell, representing how many mines there are within the 8 neighbouring cells (up, down, left, right, and the 4 diagonal directions);
+If the revealed number is 0, each of the 8 neighbouring cells are automatically revealed in the same way.
+You are given a boolean matrix field representing the distribution of bombs in the rectangular field. You are also given integers x and y, representing the coordinates of the player's first clicked cell - x represents the row index, and y represents the column index, both of which are 0-based.
+
+Your task is to return an integer matrix of the same dimensions as field, representing the resulting field after applying this click. If a cell remains concealed, the corresponding element should have a value of -1.
+
+It is guaranteed that the clicked cell does not contain a mine.
+
+Example
+
+For
+field = [[false, true, true],
+         [true, false, true],
+         [false, false, true]]
+x = 1, and y = 1, the output should be
+
+solution(field, x, y) = [[-1, -1, -1],
+                                 [-1, 5, -1],
+                                 [-1, -1, -1]]
+
+There are 5 neighbors of the cell (1, 1) which contain a mine, so the value in (1, 1) should become 5, and the other elements of the resulting matrix should be -1 since no other cell would be expanded.
+
+For
+field = [[true, false, true, true, false],
+         [true, false, false, false, false],
+         [false, false, false, false, false],
+         [true, false, false, false, false]]
+x = 3, and y = 2, the output should be
+
+solution(field, x, y) = [[-1, -1, -1, -1, -1],
+                                 [-1, 3, 2, 2, 1],
+                                 [-1, 2, 0, 0, 0],
+                                 [-1, 1, 0, 0,
+
+
+Since the value in the cell (3, 2) is 0, all of its neighboring cells ((2, 1), (2, 2), (2, 3), (3, 1), and (3, 3)) are also revealed. Since the value in the cell (2, 2) is also 0, its neighbouring cells (1, 1), (1, 2) and (1, 3) are revealed, and since the value in cell (2, 3) is 0, its neighbours (1, 4), (2, 4), and (3, 4) are also revealed. The cells (3, 3), (2, 4), and (3, 4) also contain the value 0, but since all of their neighbours have already been revealed, no further action is required.
+
+Input/Output
+
+[execution time limit] 4 seconds (js)
+
+[input] array.array.boolean field
+
+A rectangular matrix representing the locations of the mines in the game field.
+
+Guaranteed constraints:
+2 ≤ field.length ≤ 100,
+2 ≤ field[i].length ≤ 100.
+
+[input] integer x
+
+The row number of the cell which is clicked (0-based).
+
+Guaranteed constraints:
+0 ≤ x < field.length.
+
+[input] integer y
+
+The column number of the cell which is clicked (0-based).
+
+Guaranteed constraints:
+ 0 ≤ y < field[0].length.
+
+[output] array.array.integer
+
+The expanded matrix after the click.
+
+[JavaScript] Syntax Tips
+
+// Prints help message to the console
+// Returns a string
+function helloWorld(name) {
+    console.log("This prints to the console when you Run Tests");
+    return "Hello, " + name;
+
+
+function solution(field, x, y) {
+
+}
+
+--------------------------------------------------
+You're walking down a long straight road at night, illuminated by street lights, and you're wondering how many of the lights are actually required to light up the whole street.
+
+Let's represent the street as a number line, going from 0 to n (inclusive). Each street light has a different location (represented as an integer on the number line) and light radius (an integer representing how far the light shines in either direction).
+
+Given n and lights, an array of 2-element arrays of the form [location, radius], your task is to find the minimum number of these lights required to light up the whole street. Return -1 if it's not possible to light the whole street with the given set of lights.
+
+Note: Each radius includes its own border; in other words, each light covers the inclusive interval [location - radius, location + radius].
+
+Example
+
+For n = 10 and lights = [[0, 5], [1, 3], [5, 4], [8, 3]], the output should be solution(n, lights) = 2.
+
+example 1
+
+lights[0] and lights[3] illuminate the whole street (segment [0, 10]).
+There's no way to light the whole street with fewer than 2 lights, so the answer is 2.
+For n = 9 and lights = [[5, 3]], the output should be solution(n, lights) = -1.
+
+example 2
+
+It's not possible to light the whole street with this single light, because it lights only the segment [2, 8] and does not light the segments [0, 2) or (8, 9].
+
+For n = 8 and lights = [[2, 3], [8, 2]], the output should be solution(n, lights) = -1.
+
+example 3
+
+The lights don't cover the space between points 5 and 6, and thus don't cover the whole segment [0, 10].
+
+For n = 10 and lights = [[0, 5], [1, 3], [5, 4]], the output should be solution(n, lights) = -1.
+
+example 4
+
+There are no lights to cover the rightmost segment of the street from 9 to 10.
+
+Input/Output
+
+[execution time limit] 4 seconds (py3)
+
+[input] integer n
+
+The length of the street.
+
+Guaranteed constraints:
+1 ≤ n ≤ 106.
+
+[input] array.array.integer lights
+
+An array of 2-element arrays representing the street lights - lights[i][0] represents the light's position, and lights[i][1] represents the radius of the light.
+
+Guaranteed constraints:
+1 ≤ lights.length ≤ 105,
+lights[i].length = 2,
+0 ≤ lights[i][0] ≤ n,
+1 ≤ lights[i][1] ≤ 500.
+
+[output] integer
+
+The minimal number of lights needed to light the whole street.
+--------------------------------------------------
+-------------------------------------------------
+

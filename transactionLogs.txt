@@ -1,0 +1,103 @@
+// TRANSACTION LOGS
+// javascript
+function processLogs(logs, threshold) {
+    const lengthOfLogs = logs.length
+    let values = [];
+    let mapKey = {};
+    var count;
+    for (let i = 0; i < lengthOfLogs; i++) {
+        let log = logs[i].split(' ');
+        if (log[0] == log[1]) {
+            mapKey[log[0]] ? mapKey[log[0]]++ : mapKey[log[0]] = 1
+        } else {
+            mapKey[log[0]] ? mapKey[log[1]]++ : mapKey[log[1]] = 1
+        }
+    }
+    for (let key in mapKey) {
+        if (mapKey[key] >= threshold) values.push(key)
+    }
+    return values.sort();
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const logsCount = parseInt(readLine().trim(), 10);
+
+    let logs = [];
+
+    for (let i = 0; i < logsCount; i++) {
+        const logsItem = readLine();
+        logs.push(logsItem);
+    }
+
+    const threshold = parseInt(readLine().trim(), 10);
+
+    const result = processLogs(logs, threshold);
+
+    ws.write(result.join('\n') + '\n');
+
+    ws.end();
+}
+// Input: 
+// 4
+// 1 2 50
+// 1 7 70
+// 1 3 20
+// 2 2 17
+// 2
+
+// output:
+
+// expected output: 
+// 1
+// 2
+// PYTHON 3/15 TEST CASES
+
+from collections import Counter
+def processLogs(logs, threshold):
+count = Counter()
+for log in logs:
+    for user in set(log.split()[: -1]):
+        count[user] += 1
+res = []
+for x, y in count.items():
+    if y >= threshold:
+        res.append(x)
+return res
+
+
+// PYTHON 8/15
+from collections import defaultdict
+def processLogs(logs, threshold):
+    hashTable, res = defaultdict(int), set()
+    for line in logs:
+        uid1, uid2, otherData = line.split()
+    if uid1 != uid2:
+        hashTable[uid2] += 1
+    hashTable[uid1] += 1
+    if hashTable[uid1] >= threshold:
+        res.add(uid1)
+    if hashTable[uid2] >= threshold:
+        res.add(uid2)
+    return sorted(res)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+logs_count = int(input().strip())
+
+logs = []
+
+for _ in range(logs_count):
+    logs_item = input()
+    logs.append(logs_item)
+
+threshold = int(input().strip())
+
+result = processLogs(logs, threshold)
+
+fptr.write('\n'.join(result))
+fptr.write('\n')
+
+fptr.close()

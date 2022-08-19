@@ -1,0 +1,73 @@
+//  JAVASCRIPT: 2/12hn
+function numberOfItems(s, startIndices, endIndices) {
+    var count = 0;
+    var arr = Array(s.length);
+    arr[0] = 0;
+    for (let i = 1; i < s.length; i++) {
+        let char = s.charAt(i);
+        if (char === '*') {
+            count++;
+            arr[i] = arr[i - 1];
+        } else {
+            arr[i] = count;
+        }
+    }
+    let res = Array(startIndices.length);
+    for (let i = 0; i < startIndices.length; i++) {
+        let start = startIndices[i];
+        let end = endIndices[i];
+        res[i] = arr[end - 1] - arr[start - 1];
+    }
+    return res;
+}
+
+
+function numberOfItems(s, startIndices, endIndices) {
+const n = s.length
+const arr = new Array(n).fill(0).map(a => Array(n).fill(0));
+
+for(let i = 0; i < n; i++){
+    for(let j = i+1; j < n; j++){
+        if(s[j] === '*'){
+            arr[i][j] = j -1 >= 0 ?
+            arr[i][j-1] :
+            0
+        } else {
+            let k = j -1
+            while(k >= i && s[k] !== '|'){
+                k--;
+            }
+            if(k >= i &&s[k] === '|'){
+                const count = j - k -1
+                arr[i][j] = count + arr[i][k]
+            console.log(count)
+            }
+        }
+    }
+}
+const ans = []
+for(let i = 0; i < startIndices.length; i++){
+    const start = startIndices[i]
+    const end = endIndices[i]
+    ans.push(arr[start][end])
+}
+return ans
+}
+
+    containers: 6/12 
+        function numberOfItems(s, startIndices, endIndices) {
+
+            let compartmentArr = [];
+            for(let i = 0; i < startIndices.length; i++){
+                let start = startIndices[i] -1, end = endIndices[i] -1;
+                let sub = s.substring(start, end + 1);
+                if(sub.indexOf('|') == -1) compartmentArr.push(0);
+                else if(sub.indexOf('|') == sub.lastIndexOf('|')) compartmentArr.push(0);
+                else {
+                    sub = sub.substring(sub.indexOf('|'), sub.lastIndexOf('|')+ 1);
+                    sub = sub.replace(/\|/g,'');
+                    compartmentArr.push(sub.length)
+                }
+            }
+                return compartmentArr
+            }

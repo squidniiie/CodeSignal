@@ -23,3 +23,15 @@ var twoSum = function (nums, target) {
         }
     }
 }
+Solution is 95.16% faster and 51.85% less memory 
+var twoSum = function(nums, target) {
+    let map = {}
+    for(let i = 0; i < nums.length; i++){
+        let left = nums[i]
+        let right = target - left
+        if( right in map) {
+            return [map[right], i]
+        }
+        map[left] = i
+    }
+};
